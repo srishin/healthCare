@@ -7,6 +7,11 @@ class Signup extends CI_Controller {
         $this->load->model('UserModel');
     }
 
+    public function index(){
+        echo "<a href='".site_url('Signup/patientSignup')."'>Patient Signup</a><br/>";
+        echo "<a href='".site_url('Signup/doctorSignup')."'>Doctor Signup</a><br/>";
+    }
+
     public function patientSignup() {
         $this->load->view('patient',array('url'=>site_url('Signup/Patient')));
     }
@@ -38,13 +43,13 @@ class Signup extends CI_Controller {
             'phone' => trim($this->input->post('mob')),
             'user_type' => 'doctor'
         );
-        $this->UserModel->addPatient($usrData);
-        echo 'Sign up success message';
+        $token = $this->UserModel->addPatient($usrData);
+        $this->sendApproval($usrData,$token);
     }
 
     // Send Approval
     private function sendApproval($usrData,$token){
-        $link = site_url('Activate/'.$token);
+        $link = site_url('Activate/account/'.$token);
         $subject = "Please reset your password";
         echo $message = "
         <html>

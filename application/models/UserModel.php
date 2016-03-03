@@ -27,9 +27,31 @@ class UserModel extends CI_Model {
         exit();
     }
 
+    public function savePatient($data){
+        $this->db->insert('hc_patientinfo', $data);
+        if($this->db->insert_id()){
+            $this->activateUser($data['patient_id']);
+            return 1;
+        }
+        return 0;
+    }
+
+    public function saveDoctor($data){
+        $this->db->insert('hc_doctorsinfo', $data);
+        if($this->db->insert_id()){
+            $this->activateUser($data['doc_id']);
+            return 1;
+        }
+        return 0;
+    }
+
     public function activateUser($id){        
-            $this->db->where('user_id',$id)->update('hc_requests',array('token'=>''));
-         $this->db->where('id',$id)->update('users',array('status'=>1));
+        $this->db->where('user_id',$id)->update('hc_requests',array('token'=>''));
+        $this->db->where('id',$id)->update('users',array('status'=>1));
+    }
+
+     public function getUser($id) {
+        return $this->db->get_where('users', array('id' => $id))->row_array();
     }
 
     public function newSubscriber($sub) {

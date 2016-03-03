@@ -25,9 +25,9 @@
 			<div class=" container top-nav">
 
 				<a href="index.html">
-				<img src="images/logo.png" alt="Health_Care" class="img-responsive" width="60">
+				<img src="<?php echo base_url()?>assets/images/logo.png" alt="Health_Care" class="img-responsive" width="60">
 				</a>
-				<a class="btn btn-raised pull-right" href="<?php echo site_url('Signup')?>">Sign Up</a>
+
 
 			</div>
 
@@ -38,7 +38,7 @@
 
 	<div class="well">
 		<div class="container">
-			<h2>Sign In</h2> 
+			<h2>Sign Up</h2> 
 			<small></small>
 		</div>
 	</div>
@@ -47,21 +47,41 @@
 		<!-- Main Section -->
 		<section class="row mb-lg">
 		<div class="col-sm-3 center-block">
-			<form method="post"  action="<?php echo site_url('Login/doLogin') ?>">
-			<div class="form-group">
-				<label class="control-label" for="username">
-					Username
+			<form method="post"  action="<?php echo site_url('Activate/patient') ?>">			
+			<input  type="hidden" class="form-control" name="patient_id" value="<?php echo $id ?>"/>
+			<div class="form-group label-floating">
+				<label class="control-label" for="house">
+					House
 				</label>
-				<input  class="form-control" name="username" id="username"/>
+				<input  class="form-control" name="house" id=""/>
 			</div>
-			<div class="form-group">
-				<label class="control-label" for="pass">
-					Password
+			<div class="form-group label-floating">
+				<label class="control-label" for="street">
+					Street
 				</label>
-				<input  class="form-control" name="pass" id="pass"/>
+				<input  class="form-control" name="street" id=""/>
 			</div>
+			<div class="form-group label-floating">
+				<label class="control-label" for="city">
+					City
+				</label>
+				<input  class="form-control" name="city" id=""/>
+			</div>
+			<div class="form-group label-floating">
+				<label class="control-label" for="state">
+					State
+				</label>
+				<input  class="form-control" name="state" id=""/>
+			</div>
+			<div class="form-group label-floating">
+				<label class="control-label" for="pin">
+					Pin
+				</label>
+				<input  class="form-control" name="pin" id=""/>
+			</div>
+			
 			<div class="form-group text-center">
-				<button class="btn btn-primary btn-raised" type="submit">Login</button>
+				<button class="btn btn-primary btn-raised" type="submit">Submit</button>
 			</div>
 			</form>
 		</div>
