@@ -30,7 +30,12 @@ class Login extends CI_Controller {
                 );
                 $this->session->set_userdata($data);
                 // $response['url'] =;
-                redirect( site_url() . '/admin');
+                if($data['uType']=='doctor')
+                    redirect( site_url('doctor'));
+                else if($data['uType']=='patient')
+                    redirect( site_url('patient'));
+                else if($data['uType']=='admin')
+                    redirect( site_url('admin'));
             }
         } else {
             redirect('login');
